@@ -24,6 +24,19 @@ steps:
 - task: SonarQubePrepare@4
   inputs:
     SonarQube: 'SonarQube-OWASP'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'Test'
+    cliProjectName: 'Test'
+    cliSources: '.'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      # sonar.exclusions=**/*.bin
+      sonar.host.url=http://221.120.210.119:9000/
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarQube-OWASP'
     scannerMode: 'Other'
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
